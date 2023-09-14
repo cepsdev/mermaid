@@ -1,9 +1,3 @@
-
-
-
-
-
-
 kind Event;
 Event E1,E2,E3,E4,E5;
 
@@ -31,18 +25,3 @@ sm{
     };
 
 };
-/*
-{ "components": 
-   [
-    { "name":"S1", "events_in":["E1","E2"], "events_out":["E1'","E2'"]},
-    { "name":"S2", "events":["E3","E4","E5"] , "events_out":["E1'","E2'"]}
-   ]
-}
-
-{ "components": 
-   [
-    { "name":"S1", "events_in":["E1","E2"], "events_out":["E1'","E2'"]},
-    { "name":"S2", "events":["E3","E4","E5"] , "events_out":["E1'","E2'"]}
-   ]
-}
-*/

@@ -1,31 +1,3 @@
-"---------------";
-demo
-{
- for (a_machine:root.sm){
-    component{
-        name{a_machine.content().at(0);};
-        for (a_transition:a_machine.t){
-            for(an_event : a_transition.content().symbol("Event")){
-                an_event;
-            }
-        }
-    };
- }
-};
-"---------------";"---------------";
-macro extract_events{
- for (a_machine:arglist.sm){
-    component{
-        name{a_machine.content().at(0);};
-        for (a_transition:a_machine.t){
-            for(an_event : a_transition.content().symbol("Event")){
-                an_event;
-            }
-        }
-        extract_events{a_machine.sm;};
-    };
- }
-};
 
 macro extract_events_inner{
  for (a_machine:arglist.sm){
@@ -38,7 +10,7 @@ macro extract_events_inner{
  }
 };
 
-macro extract_events2{
+macro extract_events {
  for (a_machine:arglist.sm){
     comp{
         name{a_machine.content().at(0);};
@@ -51,10 +23,7 @@ macro extract_events2{
     };
  }
 };
-"---------------";"---------------";"---------------";"---------------";
 extract_events{root.sm;};
-"---------------";"---------------";"---------------";"---------------";
-extract_events2{root.sm;};
 
 val endl="\n";
 val blank = " ";
