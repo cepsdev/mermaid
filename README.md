@@ -17,7 +17,7 @@ Usage: $ ceps FILE [FILES] sm2mermaaidjs.ceps
 Example: 
 
 ```
-$ ceps iso15118-2-evcc_communication_states_ac_v2g.ceps sm2mermaaidjs.ceps 
+$ ceps iso15118-2-evcc_communication_states_ac_v2g.ceps sm2mermaidjs.ceps 
 ```
 
 Output:
