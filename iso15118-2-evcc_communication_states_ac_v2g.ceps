@@ -1,0 +1,55 @@
+kind Event;
+
+Event V2G2_483,V2G2_485,V2G2_487,V2G2_489,V2G2_494,V2G2_493,V2G2_490,V2G2_496,V2G2_497,V2G2_495,V2G2_509,V2G2_503,V2G2_684,V2G2_505,V2G2_685,V2G2_510,V2G2_683,V2G2_520,
+      V2G2_514, V2G2_513, V2G2_521, V2G2_516, V2G2_512,V2G2_518,V2G2_519,V2G2_522, V2G2_508,V2G2_501,V2G2_500;
+sm{
+    evcc_ac_conceptual;
+    states{
+        Initial;
+        Final;
+        Wait_for_supportedAppProtocolRes;
+        Wait_for_SessionSetupRes;
+        Wait_for_ServiceDiscoveryRes;
+        Wait_for_ServiceDetailRes;
+        Wait_for_ServicePaymentSelectionRes;
+        Wait_for_CertificateUpdateRes;
+        Wait_for_CertificateInstallationRes;
+        Wait_for_PaymentDetailsRes;
+        Wait_for_AuthorizationRes;
+        Wait_for_ChargeParameterDiscoveryRes;
+        Wait_for_PowerDeliveryRes;
+        Wait_for_ChargingStatusRes;
+        Wait_for_MeteringReceiptRes;
+        Wait_for_SessionStopRes;
+    };
+
+    t{Initial;Wait_for_supportedAppProtocolRes;V2G2_483;};
+    t{Wait_for_supportedAppProtocolRes;Wait_for_SessionSetupRes;V2G2_485;};
+    t{Wait_for_SessionSetupRes;Wait_for_ServiceDiscoveryRes;V2G2_487;};
+    t{Wait_for_ServiceDiscoveryRes;Wait_for_ServiceDetailRes;V2G2_489;};
+    t{Wait_for_ServiceDetailRes;Wait_for_ServiceDetailRes;V2G2_494;};
+    t{Wait_for_ServiceDetailRes;Wait_for_ServicePaymentSelectionRes;V2G2_493;};
+    t{Wait_for_ServiceDiscoveryRes;Wait_for_ServicePaymentSelectionRes;V2G2_490;};
+    t{Wait_for_ServicePaymentSelectionRes;Wait_for_CertificateInstallationRes;V2G2_496;};
+    t{Wait_for_ServicePaymentSelectionRes;Wait_for_CertificateUpdateRes;V2G2_497;};
+    t{Wait_for_CertificateUpdateRes;Wait_for_PaymentDetailsRes;V2G2_501;};
+    t{Wait_for_CertificateInstallationRes;Wait_for_PaymentDetailsRes;V2G2_500;};    
+    t{Wait_for_ServicePaymentSelectionRes;Wait_for_PaymentDetailsRes;V2G2_495;};
+    t{Wait_for_ServicePaymentSelectionRes;Wait_for_AuthorizationRes;V2G2_509;};
+    t{Wait_for_PaymentDetailsRes;Wait_for_AuthorizationRes;V2G2_503;};
+    t{Wait_for_AuthorizationRes;Wait_for_AuthorizationRes;V2G2_684;};
+    t{Wait_for_AuthorizationRes;Wait_for_ChargeParameterDiscoveryRes;V2G2_505;};
+    t{Wait_for_ChargeParameterDiscoveryRes;Wait_for_ChargeParameterDiscoveryRes;V2G2_685;};
+    t{Wait_for_ChargeParameterDiscoveryRes;Wait_for_PowerDeliveryRes;V2G2_510;};
+    t{Wait_for_PowerDeliveryRes;Wait_for_ChargeParameterDiscoveryRes;V2G2_683;};
+    t{Wait_for_PowerDeliveryRes;Wait_for_SessionStopRes;V2G2_520;};
+    t{Wait_for_PowerDeliveryRes;Wait_for_ChargingStatusRes;V2G2_514;};
+    t{Wait_for_ChargingStatusRes;Wait_for_PowerDeliveryRes;V2G2_513;};
+    t{Wait_for_ChargingStatusRes;Wait_for_PowerDeliveryRes;V2G2_521;};
+    t{Wait_for_ChargingStatusRes;Wait_for_ChargingStatusRes;V2G2_516;};
+    t{Wait_for_ChargingStatusRes;Wait_for_MeteringReceiptRes;V2G2_512;};
+    t{Wait_for_MeteringReceiptRes;Wait_for_ChargingStatusRes;V2G2_518;};
+    t{Wait_for_MeteringReceiptRes;Wait_for_PowerDeliveryRes;V2G2_519;};
+    t{Wait_for_MeteringReceiptRes;Wait_for_PowerDeliveryRes;V2G2_522;};
+    t{Wait_for_SessionStopRes;Final;V2G2_508;};
+};

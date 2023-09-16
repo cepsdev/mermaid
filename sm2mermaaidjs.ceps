@@ -1,0 +1,17 @@
+
+
+mermaidjs_state_diagram{
+ for(a_machine : root.sm){
+   "stateDiagram-v2\n";
+   for(a_transition: a_machine.t){
+      val from = a_transition.content().at(0);
+      val to = a_transition.content().at(1);
+      if (text(from) == "Initial") {let from = "[*]";}
+      if (text(to) == "Final") {let to = "[*]";}
+      "  ";from;" --> ";to;"\n";
+   }
+   "\n\n";
+ }
+};
+
+print(root.mermaidjs_state_diagram.content());
