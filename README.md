@@ -5,8 +5,8 @@
 - Unixish OS
 - recent C++ compiler (e.g. g++ version >= 9)
 - cmake
-- https://github.com/cepsdev/machines4ceps
-- Tip: copy the ceps binary to /usr/sbin/local
+- https://github.com/cepsdev/machines4ceps or download binaries directly from [sourceforge](https://sourceforge.net/projects/ceps-tool/files)
+- Tip: copy the ceps binary to /usr/sbin/local, make sure the binary is marked as executable (# chmod /usr/local/sbin/ceps +x)
 
 ## ceps and mermaidjs
 ### State Charts
