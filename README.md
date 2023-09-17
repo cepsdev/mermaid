@@ -12,7 +12,7 @@
 ### Using mermaidjs
 #### State Charts
 
-Usage: $ ceps FILE [FILES] sm2mermaaidjs.ceps
+Usage: $ ceps FILE [FILES] sm2mermaidjs.ceps
 
 Example: 
 
