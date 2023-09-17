@@ -1,4 +1,4 @@
-# Visualization and transformation of ceps models - playground
+# Visualization and transformation of ceps models
 
 ## Requirements
 - Unixish OS
