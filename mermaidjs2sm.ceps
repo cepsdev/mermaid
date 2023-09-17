@@ -1,0 +1,11 @@
+sm{
+ S;
+ states{
+     for (a_transition:root.mermaid_sm_import.t){
+        a_transition.content().at(0);a_transition.content().at(1);
+    }
+ };
+ for (a_transition:root.mermaid_sm_import.t){
+  a_transition;
+ }
+};

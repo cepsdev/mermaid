@@ -1,4 +1,4 @@
-# Visualizations of ceps models - playground
+# Visualization and transformation of ceps models - playground
 
 ## Installation
 ### Requirements
@@ -8,11 +8,12 @@
 - https://github.com/cepsdev/machines4ceps
 - Tip: copy the ceps binary to /usr/sbin/local
 
-## Visualization of models
-### Using mermaidjs
-#### State Charts
+## ceps and mermaidjs
+### State Charts
 
-Usage: $ ceps FILE [FILES] sm2mermaidjs.ceps
+#### A. Generate a mermaidjs conformant representation of a ceps state machine, i.e. ceps to mermaidjs.
+
+Synopsis: $ ceps FILE [FILES] sm2mermaidjs.ceps
 
 Example: 
 
@@ -54,11 +55,62 @@ stateDiagram-v2
   Wait_for_SessionStopRes --> [*]
 ```
 
-Rendered by mermaid.live:
+Example as rendered by mermaid.live:
 
 
 ![](/iso15118-2-evcc_communication_states_ac_v2g.png)
 
+
+#### B.  Generate a ceps conformant representation of a mermaidjs state machine, i.e. mermaidjs to ceps.
+
+Synopsis: $ ceps mermaid.ceps.lex FILE.mermaid mermaidjs2sm.ceps
+
+Example: 
+
+```
+$ ceps mermaid.ceps.lex iso15118-2-evcc_communication_states_ac_v2g.mermaid mermaidjs2sm.ceps
+```
+
+Second example:
+
+```
+$ ceps mermaid.ceps.lex iso15118-2-evcc_communication_states_ac_v2g.mermaid mermaidjs2sm.ceps sm2mermaidjs.ceps
+```
+
+Output (second example):
+```
+stateDiagram-v2
+  [*] --> Wait_for_supportedAppProtocolRes
+  Wait_for_supportedAppProtocolRes --> Wait_for_SessionSetupRes
+  Wait_for_SessionSetupRes --> Wait_for_ServiceDiscoveryRes
+  Wait_for_ServiceDiscoveryRes --> Wait_for_ServiceDetailRes
+  Wait_for_ServiceDetailRes --> Wait_for_ServiceDetailRes
+  Wait_for_ServiceDetailRes --> Wait_for_ServicePaymentSelectionRes
+  Wait_for_ServiceDiscoveryRes --> Wait_for_ServicePaymentSelectionRes
+  Wait_for_ServicePaymentSelectionRes --> Wait_for_CertificateInstallationRes
+  Wait_for_ServicePaymentSelectionRes --> Wait_for_CertificateUpdateRes
+  Wait_for_CertificateUpdateRes --> Wait_for_PaymentDetailsRes
+  Wait_for_CertificateInstallationRes --> Wait_for_PaymentDetailsRes
+  Wait_for_ServicePaymentSelectionRes --> Wait_for_PaymentDetailsRes
+  Wait_for_ServicePaymentSelectionRes --> Wait_for_AuthorizationRes
+  Wait_for_PaymentDetailsRes --> Wait_for_AuthorizationRes
+  Wait_for_AuthorizationRes --> Wait_for_AuthorizationRes
+  Wait_for_AuthorizationRes --> Wait_for_ChargeParameterDiscoveryRes
+  Wait_for_ChargeParameterDiscoveryRes --> Wait_for_ChargeParameterDiscoveryRes
+  Wait_for_ChargeParameterDiscoveryRes --> Wait_for_PowerDeliveryRes
+  Wait_for_PowerDeliveryRes --> Wait_for_ChargeParameterDiscoveryRes
+  Wait_for_PowerDeliveryRes --> Wait_for_SessionStopRes
+  Wait_for_PowerDeliveryRes --> Wait_for_ChargingStatusRes
+  Wait_for_ChargingStatusRes --> Wait_for_PowerDeliveryRes
+  Wait_for_ChargingStatusRes --> Wait_for_PowerDeliveryRes
+  Wait_for_ChargingStatusRes --> Wait_for_ChargingStatusRes
+  Wait_for_ChargingStatusRes --> Wait_for_MeteringReceiptRes
+  Wait_for_MeteringReceiptRes --> Wait_for_ChargingStatusRes
+  Wait_for_MeteringReceiptRes --> Wait_for_PowerDeliveryRes
+  Wait_for_MeteringReceiptRes --> Wait_for_PowerDeliveryRes
+  Wait_for_SessionStopRes --> [*]
+```
+Remark: Second example above demonstrates that the transformation mermaid -> ceps -> mermaid is indeed the identity map. 
 
 ## Traversal of models 
 ### Extract events from transitions: extract_events_transitively_and_group.ceps
