@@ -7,7 +7,7 @@ Example (assuming this README's directory is the current working directory):
 ```
 $ ceps mermaid.ceps.lex ../examples_mermaidjs_sm/iso15118-2-evcc_communication_states_ac_v2g.mermaid mermaidjs2sm.ceps
 ```
-Remark: The magic lies in the two files [mermaid.ceps.lex](/mermaid.ceps.lex) and [mermaidjs2sm.ceps](mermaidjs2sm.ceps). The former defines a simple set of rules which enable ceps to read .mermaid files, the latter operates on the result by adding the necessary states declaration.
+Remark: The magic lies in the two files [mermaid.ceps.lex](mermaid.ceps.lex) and [mermaidjs2sm.ceps](mermaidjs2sm.ceps). The former defines a simple set of rules which enable ceps to read .mermaid files, the latter operates on the result by adding the necessary states declaration.
 
 Second example (assuming this README's directory is the current working directory):
 
