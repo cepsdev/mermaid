@@ -1,6 +1,6 @@
-# Generate a ceps conformant representation of a mermaidjs state machine, i.e. mermaidjs to ceps.
+## Generate a ceps conformant representation of a mermaidjs state machine, i.e. mermaidjs to ceps.
 
-Synopsis: $ ceps mermaid.ceps.lex FILE.mermaid mermaidjs2sm.ceps
+### Synopsis: $ ceps mermaid.ceps.lex FILE.mermaid mermaidjs2sm.ceps
 
 Example (assuming this README's directory is the current working directory): 
 
