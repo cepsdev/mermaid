@@ -8,6 +8,26 @@ Example (assuming this README's directory is the current working directory):
 $ ceps ../examples_ceps_sm/iso15118-2-evcc_communication_states_ac_v2g.ceps sim.ceps  --post_processing sm2mermaidjs_mark_visited_states.ceps --quiet 
 ```
 
+Where *sim.ceps* has the following content.
+
+```
+Simulation{
+ Start{evcc_ac_conceptual;};
+ V2G2_483;
+ V2G2_485;
+ V2G2_487;
+ V2G2_489;
+};
+```
+
+The meaning of which is:
+- Start state machine *evcc_ac_conceptual*,
+- Fire the event *V2G2_483',
+- Fire the event *V2G2_485*,
+- Fire the event *V2G2_487*,
+- Fire the event *V2G2_489*,
+- stop.
+
 Output:
 ```
 stateDiagram-v2
