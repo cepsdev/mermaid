@@ -6,110 +6,16 @@
 - Only if you intend to build ceps from source: g++ (version >= 9), cmake. 
 - Tip: copy the ceps binary to /usr/sbin/local, make sure the binary is marked as executable (# chmod /usr/local/sbin/ceps +x)
 
-## ceps and mermaidjs
-### State Charts
+## State/Harel Charts/Diagrams
 
-#### A. Generate a mermaidjs conformant representation of a ceps state machine, i.e. ceps to mermaidjs.
+### Static visualization (no trace info etc.)
 
-Synopsis: $ ceps FILE [FILES] sm2mermaidjs.ceps
+- [ceps model => mermaid.js](/ceps2mermaid)
+- [mermaid.js => ceps model](/mermaid2ceps)
 
-Example: 
+### Dynamic visualization (with trace info etc.)
+- [ceps model + trace of execution => mermaid.js](/ceps_with_state_trace2mermaidjs)
 
-```
-$ ceps iso15118-2-evcc_communication_states_ac_v2g.ceps sm2mermaidjs.ceps 
-```
-
-Output:
-```
-stateDiagram-v2
-  [*] --> Wait_for_supportedAppProtocolRes
-  Wait_for_supportedAppProtocolRes --> Wait_for_SessionSetupRes
-  Wait_for_SessionSetupRes --> Wait_for_ServiceDiscoveryRes
-  Wait_for_ServiceDiscoveryRes --> Wait_for_ServiceDetailRes
-  Wait_for_ServiceDetailRes --> Wait_for_ServiceDetailRes
-  Wait_for_ServiceDetailRes --> Wait_for_ServicePaymentSelectionRes
-  Wait_for_ServiceDiscoveryRes --> Wait_for_ServicePaymentSelectionRes
-  Wait_for_ServicePaymentSelectionRes --> Wait_for_CertificateInstallationRes
-  Wait_for_ServicePaymentSelectionRes --> Wait_for_CertificateUpdateRes
-  Wait_for_CertificateUpdateRes --> Wait_for_PaymentDetailsRes
-  Wait_for_CertificateInstallationRes --> Wait_for_PaymentDetailsRes
-  Wait_for_ServicePaymentSelectionRes --> Wait_for_PaymentDetailsRes
-  Wait_for_ServicePaymentSelectionRes --> Wait_for_AuthorizationRes
-  Wait_for_PaymentDetailsRes --> Wait_for_AuthorizationRes
-  Wait_for_AuthorizationRes --> Wait_for_AuthorizationRes
-  Wait_for_AuthorizationRes --> Wait_for_ChargeParameterDiscoveryRes
-  Wait_for_ChargeParameterDiscoveryRes --> Wait_for_ChargeParameterDiscoveryRes
-  Wait_for_ChargeParameterDiscoveryRes --> Wait_for_PowerDeliveryRes
-  Wait_for_PowerDeliveryRes --> Wait_for_ChargeParameterDiscoveryRes
-  Wait_for_PowerDeliveryRes --> Wait_for_SessionStopRes
-  Wait_for_PowerDeliveryRes --> Wait_for_ChargingStatusRes
-  Wait_for_ChargingStatusRes --> Wait_for_PowerDeliveryRes
-  Wait_for_ChargingStatusRes --> Wait_for_PowerDeliveryRes
-  Wait_for_ChargingStatusRes --> Wait_for_ChargingStatusRes
-  Wait_for_ChargingStatusRes --> Wait_for_MeteringReceiptRes
-  Wait_for_MeteringReceiptRes --> Wait_for_ChargingStatusRes
-  Wait_for_MeteringReceiptRes --> Wait_for_PowerDeliveryRes
-  Wait_for_MeteringReceiptRes --> Wait_for_PowerDeliveryRes
-  Wait_for_SessionStopRes --> [*]
-```
-
-Example as rendered by mermaid.live:
-
-
-![](/iso15118-2-evcc_communication_states_ac_v2g.png)
-
-
-#### B.  Generate a ceps conformant representation of a mermaidjs state machine, i.e. mermaidjs to ceps.
-
-Synopsis: $ ceps mermaid.ceps.lex FILE.mermaid mermaidjs2sm.ceps
-
-Example: 
-
-```
-$ ceps mermaid.ceps.lex iso15118-2-evcc_communication_states_ac_v2g.mermaid mermaidjs2sm.ceps
-```
-Remark: The magic lies in the two files [mermaid.ceps.lex](/mermaid.ceps.lex) and [mermaidjs2sm.ceps](mermaidjs2sm.ceps). The former defines a simple set of rules which enable ceps to read .mermaid files, the latter operates on the result by adding the necessary states declaration.
-
-Second example:
-
-```
-$ ceps mermaid.ceps.lex iso15118-2-evcc_communication_states_ac_v2g.mermaid mermaidjs2sm.ceps sm2mermaidjs.ceps
-```
-
-Output (second example):
-```
-stateDiagram-v2
-  [*] --> Wait_for_supportedAppProtocolRes
-  Wait_for_supportedAppProtocolRes --> Wait_for_SessionSetupRes
-  Wait_for_SessionSetupRes --> Wait_for_ServiceDiscoveryRes
-  Wait_for_ServiceDiscoveryRes --> Wait_for_ServiceDetailRes
-  Wait_for_ServiceDetailRes --> Wait_for_ServiceDetailRes
-  Wait_for_ServiceDetailRes --> Wait_for_ServicePaymentSelectionRes
-  Wait_for_ServiceDiscoveryRes --> Wait_for_ServicePaymentSelectionRes
-  Wait_for_ServicePaymentSelectionRes --> Wait_for_CertificateInstallationRes
-  Wait_for_ServicePaymentSelectionRes --> Wait_for_CertificateUpdateRes
-  Wait_for_CertificateUpdateRes --> Wait_for_PaymentDetailsRes
-  Wait_for_CertificateInstallationRes --> Wait_for_PaymentDetailsRes
-  Wait_for_ServicePaymentSelectionRes --> Wait_for_PaymentDetailsRes
-  Wait_for_ServicePaymentSelectionRes --> Wait_for_AuthorizationRes
-  Wait_for_PaymentDetailsRes --> Wait_for_AuthorizationRes
-  Wait_for_AuthorizationRes --> Wait_for_AuthorizationRes
-  Wait_for_AuthorizationRes --> Wait_for_ChargeParameterDiscoveryRes
-  Wait_for_ChargeParameterDiscoveryRes --> Wait_for_ChargeParameterDiscoveryRes
-  Wait_for_ChargeParameterDiscoveryRes --> Wait_for_PowerDeliveryRes
-  Wait_for_PowerDeliveryRes --> Wait_for_ChargeParameterDiscoveryRes
-  Wait_for_PowerDeliveryRes --> Wait_for_SessionStopRes
-  Wait_for_PowerDeliveryRes --> Wait_for_ChargingStatusRes
-  Wait_for_ChargingStatusRes --> Wait_for_PowerDeliveryRes
-  Wait_for_ChargingStatusRes --> Wait_for_PowerDeliveryRes
-  Wait_for_ChargingStatusRes --> Wait_for_ChargingStatusRes
-  Wait_for_ChargingStatusRes --> Wait_for_MeteringReceiptRes
-  Wait_for_MeteringReceiptRes --> Wait_for_ChargingStatusRes
-  Wait_for_MeteringReceiptRes --> Wait_for_PowerDeliveryRes
-  Wait_for_MeteringReceiptRes --> Wait_for_PowerDeliveryRes
-  Wait_for_SessionStopRes --> [*]
-```
-Remark: Second example above demonstrates that the transformation mermaid -> ceps -> mermaid is indeed the identity map. 
 
 ## Traversal of models 
 ### Extract events from transitions: extract_events_transitively_and_group.ceps

@@ -4,6 +4,11 @@ Event V2G2_483,V2G2_485,V2G2_487,V2G2_489,V2G2_494,V2G2_493,V2G2_490,V2G2_496,V2
       V2G2_514, V2G2_513, V2G2_521, V2G2_516, V2G2_512,V2G2_518,V2G2_519,V2G2_522, V2G2_508,V2G2_501,V2G2_500;
 sm{
     evcc_ac_conceptual;
+    
+    cover{ 
+      edges_upto_1;
+      dont_cover_loops;
+    };
     states{
         Initial;
         Final;

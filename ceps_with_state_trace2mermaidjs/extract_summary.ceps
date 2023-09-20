@@ -1,0 +1,6 @@
+visited_sates{
+    for( e:root.summary.coverage.state_coverage.covered_states.content().operator().rhs())
+    {
+        text(e);
+    }
+};
