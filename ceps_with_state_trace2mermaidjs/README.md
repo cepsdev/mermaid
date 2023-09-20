@@ -22,7 +22,7 @@ Simulation{
 
 The meaning of which is:
 - Start state machine *evcc_ac_conceptual*,
-- Fire the event *V2G2_483',
+- Fire the event *V2G2_483*,
 - Fire the event *V2G2_485*,
 - Fire the event *V2G2_487*,
 - Fire the event *V2G2_489*,
