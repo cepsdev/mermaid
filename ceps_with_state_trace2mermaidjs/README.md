@@ -1,5 +1,3 @@
-ceps ../examples_ceps_sm/iso15118-2-evcc_communication_states_ac_v2g.ceps sim.ceps  --post_processing sm2mermaidjs_mark_visited_states.ceps --quiet
-
 # Generate a mermaid.js conformant representation of a ceps state machine where the visited states are highlighted, i.e. ceps with trace to annotated mermaid.js.
 
 Synopsis: $ ceps FILE [FILES] SIMULATION-FILE  --post_processing sm2mermaidjs_mark_visited_states.ceps --quiet
