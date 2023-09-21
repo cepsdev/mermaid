@@ -46,3 +46,29 @@ Example as rendered by mermaid.live:
 
 
 ![](../iso15118-2-evcc_communication_states_ac_v2g.png)
+
+
+Second example with compound states: 
+
+```
+$ ceps ../examples_ceps_sm/exi-proc-cconceptual.ceps sm2mermaidjs.ceps 
+```
+
+Output:
+```
+stateDiagram-v2
+state stream_encoder{
+  [*] --> se_WaitForData
+  se_WaitForData --> se_ProcessData
+  se_ProcessData --> se_WaitForData
+}
+state stream_decoder{
+  [*] --> sd_WaitForData
+  sd_WaitForData --> sd_ProcessData
+  sd_ProcessData --> sd_WaitForData
+}
+  [*] --> stream_encoder
+  [*] --> stream_decoder
+```
+
+![](../exi-proc-cconceptual.png)

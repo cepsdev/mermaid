@@ -1,0 +1,22 @@
+ sm{
+    as_identifier("EXI processor");
+    kind Event;
+    Event EncodeStructuredData, DecodeStream;
+    states{Initial;};
+    sm{
+      stream_encoder;
+      states{Initial;se_WaitForData;se_ProcessData;};
+      t{Initial;se_WaitForData;};
+      t{se_WaitForData;se_ProcessData;EncodeStructuredData;};
+      t{se_ProcessData;se_WaitForData;};
+    };
+    sm{
+      stream_decoder;
+      states{Initial;sd_WaitForData;sd_ProcessData;};
+      t{Initial;sd_WaitForData;};
+      t{sd_WaitForData;sd_ProcessData;DecodeStream;};
+      t{sd_ProcessData;sd_WaitForData;};
+    };
+    t{Initial;stream_encoder;};
+    t{Initial;stream_decoder;};
+ };

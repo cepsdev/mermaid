@@ -1,8 +1,23 @@
+macro ceps2mermaidjs_inner{
+  for (an_sm : arglist.sm){
+    "state "; an_sm.content().at(0); "{\n";
+    ceps2mermaidjs_inner{an_sm.sm;};
+    for(a_transition: an_sm.t){
+        val from = a_transition.content().at(0);
+        val to = a_transition.content().at(1);
+        if (text(from) == "Initial") {let from = "[*]";}
+        if (text(to) == "Final") {let to = "[*]";}
+        "  ";from;" --> ";to;"\n";
+    }
 
+    "}\n";
+  }
+};
 
-mermaidjs_state_diagram{
+macro ceps2mermaidjs{
  for(a_machine : root.sm){
    "stateDiagram-v2\n";
+   ceps2mermaidjs_inner{root.sm.content().sm;};
    for(a_transition: a_machine.t){
       val from = a_transition.content().at(0);
       val to = a_transition.content().at(1);
@@ -12,6 +27,10 @@ mermaidjs_state_diagram{
    }
    "\n\n";
  }
+};
+
+mermaidjs_state_diagram{
+ ceps2mermaidjs{root.sm;};
 };
 
 print(root.mermaidjs_state_diagram.content());
