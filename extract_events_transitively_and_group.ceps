@@ -1,12 +1,12 @@
 
-macro extract_events_inner{
+macro extract_in_events_inner{
  for (a_machine:arglist.sm){
         for (a_transition:a_machine.t){
             for(an_event : a_transition.content().symbol("Event")){
                 an_event;
             }
         }
-        extract_events_inner{a_machine.sm;};
+        extract_in_events_inner{a_machine.sm;};
  }
 };
 
@@ -14,41 +14,63 @@ macro extract_events {
  for (a_machine:arglist.sm){
     comp{
         name{a_machine.content().at(0);};
-        for (a_transition:a_machine.t){
+        in_ev{
+         for (a_transition:a_machine.t){
             for(an_event : a_transition.content().symbol("Event")){
                 an_event;
             }
-        }
-        extract_events_inner{a_machine.sm;};
+         }
+         extract_in_events_inner{a_machine.sm;};
+        };
+        out_ev{
+         for (an_action:a_machine.Actions.content().is_struct()){
+            an_action.fetch_recursively_symbols().symbol("Event");
+         }
+        };
     };
  }
 };
 extract_events{root.sm;};
-
+/*
 val endl="\n";
 val blank = " ";
+val blank4 = "    ";
+val comma = ",";
 val quotes = "\"";
+val out_ev_field = " \"out_events\":"; 
+val in_ev_field = " \"in_events\":"; 
+val name_field = " \"name\":"; 
+val lbrace = "{"; 
+val rbrace = "}"; 
 
 json{
 "{";endl;
 "  \"components\":";endl; 
-" [";
+lbrace;
 for(c:root.comp){
     endl;
-    "    {";
-     "\"name\":"; "\""; c.name.content(); "\""; ",";
-     " \"events\""; ":"; "[";
-     for(e:c.content().symbol()) {
-        "\"";e;"\""; if(!last){",";}
+    blank4;lbrace;
+    name_field; quotes; c.name.content(); quotes; comma;
+
+     in_ev_field; "[";
+     for(e:c.in_ev.content().symbol()) {
+        quotes; e; quotes; if(!last){comma;}
+     }
+     "]";comma;
+    
+     out_ev_field; "[";
+     for(e:c.out_ev.content().symbol()) {
+        quotes; e; quotes; if(!last){comma;}
      }
      "]";
-    "}";
-    if(!last){",";};
+    rbrace;
+    if(!last){comma;};
 }
 endl;
 " ]";
 endl;
-"}";endl;
+rbrace;endl;
 };
 
 print(root.json.content());
+*/
