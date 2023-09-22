@@ -45,7 +45,7 @@ Output:
 ```
 
 #### Second example: 
-**Warning**
+**Warning**  
 Requires [ceps version 8.1.1](https://sourceforge.net/projects/ceps-tool/) or higher. 
 
 ```
