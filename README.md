@@ -45,6 +45,8 @@ Output:
 ```
 
 #### Second example: 
+**Warning**
+Requires [ceps version 8.1.1](https://sourceforge.net/projects/ceps-tool/) or higher. 
 
 ```
 $ ceps examples_ceps_sm/sm_with_actions.ceps extract_events_transitively_and_group.ceps
