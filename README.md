@@ -20,21 +20,46 @@
 ## Traversal of models 
 ### Extract events from transitions: extract_events_transitively_and_group.ceps
 
-Usage: $ ceps FILE [FILES] extract_events_transitively_and_group.ceps
+#### Synopsis: 
 
-Example: 
+$ ceps FILE [FILES] extract_events_transitively_and_group.ceps
+
+#### Example: 
 
 ```
 $ ceps s.ceps extract_events_transitively_and_group.ceps
 ```
+
+Input state machine is: [s.ceps](/s.ceps)
+
 
 Output:
 ```
 {
   "components":
  [
-    {"name":"S1", "events":["E1","E2"]},
-    {"name":"S2", "events":["E3","E4","E5"]}
+    { "name":"S1", "in_events":["E1","E2"], "out_events":[]},
+    { "name":"S2", "in_events":["E3","E4","E5"], "out_events":[]}
+ ]
+}
+```
+
+#### Second example: 
+
+```
+$ ceps examples_ceps_sm/sm_with_actions.ceps extract_events_transitively_and_group.ceps
+```
+
+Input state machine is: [sm_with_actions.ceps](/examples_ceps_sm/sm_with_actions.ceps)
+
+
+Output:
+```
+{
+  "components":
+ [
+    { "name":"basic_example1", "in_events":["ANY_KEY","CAPS_LOCK"], "out_events":["OUT1","OUT2","OUT3"]},
+    { "name":"basic_example2", "in_events":["ANY_KEY","OUT1","OUT2"], "out_events":["CAPS_LOCK","OUT2"]}
  ]
 }
 ```

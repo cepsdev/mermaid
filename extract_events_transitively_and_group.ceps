@@ -14,7 +14,7 @@ macro extract_events {
  for (a_machine:arglist.sm){
     comp{
         name{a_machine.content().at(0);};
-        in_ev{
+        in_ev_pre{
          for (a_transition:a_machine.t){
             for(an_event : a_transition.content().symbol("Event")){
                 an_event;
@@ -22,16 +22,22 @@ macro extract_events {
          }
          extract_in_events_inner{a_machine.sm;};
         };
-        out_ev{
+        in_ev{
+         predecessor().content().symbol("Event").sort().unique();
+        };
+        out_ev_pre{
          for (an_action:a_machine.Actions.content().is_struct()){
             an_action.fetch_recursively_symbols().symbol("Event");
          }
+        };
+        out_ev{
+         predecessor().content().symbol("Event").sort().unique();
         };
     };
  }
 };
 extract_events{root.sm;};
-/*
+
 val endl="\n";
 val blank = " ";
 val blank4 = "    ";
@@ -46,7 +52,7 @@ val rbrace = "}";
 json{
 "{";endl;
 "  \"components\":";endl; 
-lbrace;
+" [";
 for(c:root.comp){
     endl;
     blank4;lbrace;
@@ -73,4 +79,3 @@ rbrace;endl;
 };
 
 print(root.json.content());
-*/

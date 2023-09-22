@@ -38,9 +38,10 @@ sm{
   send_upper_case_scan_code{
      key_count = key_count - 1;
      print("key_count=",key_count,"\n");
+     OUT_3;
      if(key_count == 3141592){
       {
-         OUT_3;
+       OUT3;   
       }
      }
   };
@@ -71,7 +72,7 @@ sm{
   send_lower_case_scan_code {
      key_count = key_count - 1;
      print("key_count=",key_count,"\n");
-     CAPS_LOCK;
+     
      {
       {
          OUT2;
@@ -83,7 +84,7 @@ sm{
      print("key_count=",key_count,"\n");
      if(key_count == 3141592){
       {
-         OUT_3;
+         CAPS_LOCK;
       }
      }
   };
